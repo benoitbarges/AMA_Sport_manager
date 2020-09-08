@@ -20,12 +20,12 @@ class User < ApplicationRecord
 
   def total_earnings
     return 0 if earnings.empty?
-    earnings.where('date >= ?', 6.months.ago).pluck(:real_amount).sum
+    earnings.where('date >= ?', 12.months.ago).pluck(:real_amount).sum
   end
 
   def total_expenses
     return 0 if expenses.empty?
-    expenses.where('date >= ?', 6.months.ago).pluck(:amount).sum
+    expenses.where('date >= ?', 12.months.ago).pluck(:amount).sum
   end
 
   private

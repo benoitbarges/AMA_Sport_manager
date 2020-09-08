@@ -56,7 +56,12 @@ class EarningsController < ApplicationController
         redirect_to dashboard_index_path, notice: 'Fixed Earning was successfully added.'
       end
     else
-      render :new
+      if params[:commit] == "Add earning"
+        redirect_to new_earning_path, alert: "You have made a mistake."
+      else
+        tournament = Tournament.find(params[:earning][:tournament_id].to_i)
+        redirect_to tournament_path(tournament), alert: "You must select a forcaste amount"
+      end
     end
   end
 
